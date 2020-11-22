@@ -4,7 +4,6 @@ import business.abstracts.MusicPlayer;
 import business.data.Playlist;
 import business.data.Track;
 import business.services.util.MathUtil;
-import business.services.util.PlayingState;
 
 public class MP3Player extends MusicPlayer {
 	
@@ -21,9 +20,11 @@ public class MP3Player extends MusicPlayer {
 	
 	@Override
 	public void play() {
+		
 		if (audioPlayer != null) {
 			audioPlayer.play();
-			playingState = PlayingState.PLAY;
+			playingState = playingState.switchState();
+			
 		} else if (tracklist != null) {
 			Track currentTrack = tracklist.current();
 			play(currentTrack);
@@ -32,8 +33,10 @@ public class MP3Player extends MusicPlayer {
 
 	@Override
 	public void play(String pathToFile) {
+		
 		if (playingState.isPlaying())
 			stop();
+		
 		audioPlayer = minim.loadMP3File(pathToFile);
 		play();
 	}
@@ -55,7 +58,7 @@ public class MP3Player extends MusicPlayer {
 	@Override
 	public void stop() {
 		if (audioPlayer != null) {
-			audioPlayer.pause();
+			pause();
 			audioPlayer.rewind();
 		}
 	}
@@ -70,18 +73,33 @@ public class MP3Player extends MusicPlayer {
 
 	@Override
 	public void skip() {
-		if (tracklist != null && repeatState.repeatOne())
-			play(tracklist.current());
-		else if (tracklist != null && shuffleState.isActive())
-			play(tracklist.random());
-		else if (tracklist != null && (repeatState.repeatAll() || tracklist.hasNext()))
-			play(tracklist.next());
+		
+		if (tracklist != null) {
+			
+			if (repeatState.repeatOne())
+				play(tracklist.current());
+			
+			else if (shuffleState.isActive())
+				play(tracklist.random());
+			
+			else if (repeatState.repeatAll() || tracklist.hasNext())
+				play(tracklist.next());
+			
+		}
 	}
 
 	@Override
 	public void skipBack() {
-		if (tracklist != null && (repeatState.repeatAll() || tracklist.hasPrev()))
-			play(tracklist.prev());
+		
+		if (tracklist != null) {
+			
+			if (repeatState.repeatOne())
+				play(tracklist.current());
+			
+			else if (repeatState.repeatAll() || tracklist.hasPrev())
+				play(tracklist.prev());
+			
+		}
 	}
 
 	@Override
