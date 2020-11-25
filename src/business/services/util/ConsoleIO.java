@@ -4,11 +4,18 @@ import de.hsrm.mi.prog.util.StaticScanner;
 
 public class ConsoleIO {
 
+	/**
+	 * Asks user for console input.
+	 * @return (String) User input.
+	 */
 	public static String askForUserInput() {
 		System.out.print("> ");
 		return StaticScanner.nextString().trim();
 	}
 	
+	/**
+	 * Prints Menu to the console.
+	 */
 	public static void printMenu() {
 		System.out.println("Available commands: ");
 		System.out.println(Command.PLAY + " [song] \t - start the song");

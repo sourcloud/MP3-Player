@@ -30,6 +30,16 @@ public enum ShuffleState {
 		
 	};
 	
+	/**
+	 * Switches state between ACTIVE and INACTIVE!
+	 * @return (ShuffleState) Next state.
+	 */
 	public abstract ShuffleState switchState();
+	
+	/**
+	 * Returns if state is ACTIVE.
+	 * 
+	 * @return (boolean) True if state is ACTIVE, else false.
+	 */
 	public abstract boolean isActive();
 }

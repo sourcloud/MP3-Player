@@ -30,6 +30,18 @@ public enum PlayingState {
 		
 	};
 	
+	
+	/**
+	 * Switches state between PLAY and PAUSE.
+	 * 
+	 * @return (PlayingState) Next state.
+	 */
 	public abstract PlayingState switchState();
+	
+	/**
+	 * Returns if state is PLAY.
+	 * 
+	 * @return (boolean) True if state is PLAY, else false.
+	 */
 	public abstract boolean isPlaying();
 }
