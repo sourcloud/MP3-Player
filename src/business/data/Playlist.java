@@ -32,7 +32,7 @@ public class Playlist implements Cycle<Track> {
 		currentIndex = MathUtil.getRandomInRange(0, tracklist.size() - 1);
 		return tracklist.get(currentIndex);
 	}
-
+	
 	@Override
 	public boolean hasNext() {
 		return currentIndex < tracklist.size() - 1;

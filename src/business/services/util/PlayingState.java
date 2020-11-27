@@ -1,9 +1,15 @@
 package business.services.util;
 
+/**
+ * Enum that represents if a player a player's state is PLAY or PAUSE.
+ * 
+ * @author Sascha Scheid
+ *
+ */
 public enum PlayingState {
-	
+
 	PLAY {
-		
+
 		@Override
 		public PlayingState switchState() {
 			return PAUSE;
@@ -13,11 +19,11 @@ public enum PlayingState {
 		public boolean isPlaying() {
 			return true;
 		}
-		
+
 	},
-	
+
 	PAUSE {
-		
+
 		@Override
 		public PlayingState switchState() {
 			return PLAY;
@@ -27,17 +33,16 @@ public enum PlayingState {
 		public boolean isPlaying() {
 			return false;
 		}
-		
+
 	};
-	
-	
+
 	/**
 	 * Switches state between PLAY and PAUSE.
 	 * 
 	 * @return (PlayingState) Next state.
 	 */
 	public abstract PlayingState switchState();
-	
+
 	/**
 	 * Returns if state is PLAY.
 	 * 

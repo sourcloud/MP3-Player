@@ -1,9 +1,14 @@
 package business.services.util;
 
+/**
+ * Enum that represents if a player's shuffle state is active or inactive
+ * 
+ * @author Sascha Scheid
+ */
 public enum ShuffleState {
-	
+
 	ACTIVE {
-		
+
 		@Override
 		public ShuffleState switchState() {
 			return INACTIVE;
@@ -13,11 +18,11 @@ public enum ShuffleState {
 		public boolean isActive() {
 			return true;
 		}
-		
+
 	},
-	
+
 	INACTIVE {
-		
+
 		@Override
 		public ShuffleState switchState() {
 			return ACTIVE;
@@ -27,15 +32,16 @@ public enum ShuffleState {
 		public boolean isActive() {
 			return false;
 		}
-		
+
 	};
-	
+
 	/**
 	 * Switches state between ACTIVE and INACTIVE!
+	 * 
 	 * @return (ShuffleState) Next state.
 	 */
 	public abstract ShuffleState switchState();
-	
+
 	/**
 	 * Returns if state is ACTIVE.
 	 * 

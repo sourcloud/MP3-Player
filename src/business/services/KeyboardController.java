@@ -3,13 +3,13 @@ package business.services;
 import business.data.Playlist;
 import business.data.Track;
 import business.interfaces.Controller;
-import business.interfaces.Player;
+import business.interfaces.MediaPlayer;
 import business.services.util.Command;
 import business.services.util.ConsoleIO;
 
 public class KeyboardController implements Controller {
 	
-	private Player<Track> mp3Player;
+	private MediaPlayer<Track> mp3Player;
 	
 	public KeyboardController() {
 		mp3Player = new MP3Player();

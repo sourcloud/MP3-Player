@@ -2,17 +2,24 @@ package business.services.util;
 
 import de.hsrm.mi.prog.util.StaticScanner;
 
+/**
+ * Utility class that provides static methods for console interaction.
+ * 
+ * @author Sascha Scheid
+ *
+ */
 public class ConsoleIO {
 
 	/**
 	 * Asks user for console input.
+	 * 
 	 * @return (String) User input.
 	 */
 	public static String askForUserInput() {
 		System.out.print("> ");
 		return StaticScanner.nextString().trim();
 	}
-	
+
 	/**
 	 * Prints Menu to the console.
 	 */
@@ -29,5 +36,5 @@ public class ConsoleIO {
 		System.out.println(Command.VOLUME + " [gain] \t - sets volume to gain level");
 		System.out.println(Command.QUIT + " \t\t - exits the application");
 	}
-	
+
 }

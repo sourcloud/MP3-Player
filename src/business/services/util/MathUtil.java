@@ -1,5 +1,11 @@
 package business.services.util;
 
+/**
+ * Utility class that provides static methods for mathematical calculations.
+ * 
+ * @author Sascha Scheid
+ *
+ */
 public class MathUtil {
 
 	/**
@@ -11,7 +17,7 @@ public class MathUtil {
 	public static float convertLinearToDB(float toConvert) {
 		return (float) (10 * Math.log10(toConvert));
 	}
-	
+
 	/**
 	 * Calculates Random int value in a given range.
 	 * 
@@ -20,7 +26,7 @@ public class MathUtil {
 	 * @return (int) Random value between min and max.
 	 */
 	public static int getRandomInRange(int min, int max) {
-		return  min + (int) (Math.random() * (max - min + 1));
+		return min + (int) (Math.random() * (max - min + 1));
 	}
-	
+
 }

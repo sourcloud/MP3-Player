@@ -1,14 +1,14 @@
 package business.abstracts;
 
 import business.data.Track;
-import business.interfaces.Player;
+import business.interfaces.MediaPlayer;
 import business.services.util.PlayingState;
 import business.services.util.RepeatState;
 import business.services.util.ShuffleState;
 import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
 import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
 
-public abstract class MusicPlayer implements Player<Track> {
+public abstract class MusicPlayer implements MediaPlayer<Track> {
 
 	protected SimpleMinim minim;
 	protected SimpleAudioPlayer audioPlayer;
