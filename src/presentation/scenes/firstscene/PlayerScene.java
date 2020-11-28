@@ -5,10 +5,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import presentation.uicomponents.controlview.ControlView;
+import presentation.uicomponents.songview.SongView;
 
-public class MainScene extends BorderPane {
+public class PlayerScene extends BorderPane {
 	
-	public MainScene() {
+	public PlayerScene() {
 		
 		this.getStylesheets().add("/presentation/scenes/firstscene/style.css");
 		
@@ -20,6 +21,10 @@ public class MainScene extends BorderPane {
 		header.getChildren().addAll(title, subtitle);
 		
 		this.setTop(header);
+		
+		// center
+		Pane songView = new SongView();
+		this.setCenter(songView);
 		
 		// bottom
 		Pane controlView = new ControlView();

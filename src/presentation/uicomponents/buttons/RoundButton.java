@@ -16,7 +16,9 @@ public class RoundButton extends Button {
 		double diameter = 2 * this.radius;
 		
 		this.setShape(new Circle(diameter));
+		this.setMinSize(diameter, diameter);
 		this.setPrefSize(diameter, diameter);
+		this.setMaxSize(diameter, diameter);
 
 	}
 	

@@ -42,9 +42,9 @@ public class ControlView extends HBox {
 	
 	private void initializeButtons() {
 
-		skipButton = new RoundButton(SKIP_SIGN);
-		stopButton = new RoundButton(STOP_SIGN);
 		playButton = new RoundButton(PLAY_SIGN);
+		stopButton = new RoundButton(STOP_SIGN);
+		skipButton = new RoundButton(SKIP_SIGN);
 		pauseButton = new RoundButton(PAUSE_SIGN);
 		repeatButton = new RoundButton(REPEAT_SIGN);
 		shuffleButton = new RoundButton(SHUFFLE_SIGN);

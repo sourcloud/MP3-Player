@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import presentation.scenes.firstscene.MainScene;
+import presentation.scenes.firstscene.PlayerScene;
 import presentation.scenes.secondscene.SecondScene;
 import presentation.scenes.thirdscene.ThirdScene;
 
@@ -23,7 +23,7 @@ public class Main extends Application {
 		
 		scenes = new HashMap<>();
 
-		scenes.put(Scenes.FIRST_SCENE, new MainScene());
+		scenes.put(Scenes.FIRST_SCENE, new PlayerScene());
 		scenes.put(Scenes.SECOND_SCENE, new SecondScene());
 		scenes.put(Scenes.THIRD_SCENE, new ThirdScene());
 		
@@ -31,8 +31,13 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		
 		try {
+			
 			this.primaryStage = primaryStage;
+			primaryStage.setMinHeight(450);;
+			primaryStage.setMinWidth(450);
+			
 			BorderPane root = new BorderPane();
 
 			Scene scene = new Scene(root);
