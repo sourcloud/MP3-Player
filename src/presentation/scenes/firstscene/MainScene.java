@@ -10,6 +10,8 @@ public class MainScene extends BorderPane {
 	
 	public MainScene() {
 		
+		this.getStylesheets().add("/presentation/scenes/firstscene/style.css");
+		
 		VBox header = new VBox();
 		
 		Label title = new Label("Main Scene");
@@ -19,6 +21,7 @@ public class MainScene extends BorderPane {
 		
 		this.setTop(header);
 		
+		// bottom
 		Pane controlView = new ControlView();
 		this.setBottom(controlView);
 	}

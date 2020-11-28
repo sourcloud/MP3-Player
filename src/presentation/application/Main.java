@@ -49,7 +49,6 @@ public class Main extends Application {
 
 	public void switchScene(Scenes toScene) {
 		
-		Pane toPane = null;
 		Scene scene = primaryStage.getScene();
 
 		if (scenes.containsKey(toScene)) {
