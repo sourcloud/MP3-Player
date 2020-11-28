@@ -1,7 +1,16 @@
 * {
 	-fx-background-color: #191919;
+	-fx-alignment: center;
+	-fx-padding: 5px;
 }
 
-.round {
-	-fx-font-size: 25pt;	
+.roundbutton {
+	
+	-fx-font-size: 16pt;	
+    -fx-text-fill: #BB86FC;
+     
+    -fx-border-insets: 5px;
+	-fx-background-insets: 5px;
+    
+    -fx-background-color: #212121;
 }

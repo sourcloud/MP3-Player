@@ -1,17 +1,3 @@
 * {
 	-fx-background-color: #121212;
 }
-
-.group {
-	-fx-background-color: #191919;
-}
-
-.button {
-	-fx-background-color: #212121;
-	-fx-text-size: 48pt; 
-   	-fx-text-fill: #BB86FC; 
-}
-
-.playbutton { 
-
-}
