@@ -28,7 +28,7 @@ public enum RepeatState {
 	ALL {
 		@Override
 		public RepeatState nextState() {
-			return ONE;
+			return SINGLE;
 		}
 
 		@Override
@@ -42,7 +42,7 @@ public enum RepeatState {
 		}
 	},
 
-	ONE {
+	SINGLE {
 		@Override
 		public RepeatState nextState() {
 			return NONE;

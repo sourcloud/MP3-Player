@@ -16,7 +16,7 @@ public enum PlayingState {
 		}
 
 		@Override
-		public boolean isPlaying() {
+		public boolean playing() {
 			return true;
 		}
 
@@ -30,7 +30,7 @@ public enum PlayingState {
 		}
 
 		@Override
-		public boolean isPlaying() {
+		public boolean playing() {
 			return false;
 		}
 
@@ -48,5 +48,5 @@ public enum PlayingState {
 	 * 
 	 * @return (boolean) True if state is PLAY, else false.
 	 */
-	public abstract boolean isPlaying();
+	public abstract boolean playing();
 }

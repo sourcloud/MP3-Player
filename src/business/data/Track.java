@@ -50,7 +50,7 @@ public class Track extends Playable {
 	private void extractMetadata(String pathToMP3){
 
 			try {			
-				Mp3File mp3File = new Mp3File("SomeMp3File.mp3");
+				Mp3File mp3File = new Mp3File(pathToMP3);
 				setMetadataFromFile(mp3File);			
 			} catch (UnsupportedTagException | InvalidDataException | IOException e) {			
 				e.printStackTrace();

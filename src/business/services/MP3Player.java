@@ -34,7 +34,7 @@ public class MP3Player extends MusicPlayer {
 	@Override
 	public void play(String pathToFile) {
 		
-		if (playingState.isPlaying())
+		if (playingState.playing())
 			stop();
 		
 		audioPlayer = minim.loadMP3File(pathToFile);
@@ -49,7 +49,7 @@ public class MP3Player extends MusicPlayer {
 
 	@Override
 	public void pause() {
-		if (audioPlayer != null && playingState.isPlaying()) {
+		if (audioPlayer != null && playingState.playing()) {
 			audioPlayer.pause();
 			playingState = playingState.switchState();
 		}
@@ -79,7 +79,7 @@ public class MP3Player extends MusicPlayer {
 			if (repeatState.repeatOne())
 				play(tracklist.current());
 			
-			else if (shuffleState.isActive())
+			else if (shuffleState.active())
 				play(tracklist.random());
 			
 			else if (repeatState.repeatAll() || tracklist.hasNext())

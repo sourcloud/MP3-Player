@@ -15,7 +15,7 @@ public enum ShuffleState {
 		}
 
 		@Override
-		public boolean isActive() {
+		public boolean active() {
 			return true;
 		}
 
@@ -29,7 +29,7 @@ public enum ShuffleState {
 		}
 
 		@Override
-		public boolean isActive() {
+		public boolean active() {
 			return false;
 		}
 
@@ -47,5 +47,5 @@ public enum ShuffleState {
 	 * 
 	 * @return (boolean) True if state is ACTIVE, else false.
 	 */
-	public abstract boolean isActive();
+	public abstract boolean active();
 }

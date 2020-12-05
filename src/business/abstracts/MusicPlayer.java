@@ -24,4 +24,16 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 		playingState = PlayingState.PAUSE;
 	}
 	
+	public RepeatState getRepeatState() {
+		return repeatState;
+	}
+	
+	public ShuffleState getShuffleState() {
+		return shuffleState;
+	}
+	
+	public PlayingState getPlayingState() {
+		return playingState;
+	}
+	
 }

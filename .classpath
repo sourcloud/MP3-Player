@@ -11,16 +11,15 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/eibo_simpleminim.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/eibo_staticscanner.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/jl1.0.1.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/jsminim.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/minim.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/mp3agic.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/mp3playerUtil.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/mp3spi1.9.5.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/tritonus_aos.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/tritonus_share.jar"/>
-	<classpathentry kind="lib" path="/Users/sascha/dev/eibo_libs/fontawesomefx-8.9.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/eibo_simpleminim.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/eibo_staticscanner.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/jsminim.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/minim.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/mp3agic.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/mp3playerUtil.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/mp3spi1.9.5.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/tritonus_aos.jar"/>
+	<classpathentry kind="lib" path="/Users/sascha/Developer/eibo_libs/tritonus_share.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

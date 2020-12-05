@@ -24,11 +24,12 @@ public class PlayerScene extends BorderPane {
 		
 		// center
 		Pane songView = new SongView();
-		this.setCenter(songView);
+		this.setCenter(songView); 		
 		
 		// bottom
 		Pane controlView = new ControlView();
 		this.setBottom(controlView);
 	}
+
 
 }

@@ -4,22 +4,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 
-public class Cover extends VBox {
+public class Cover extends ImageView {
 	
 	private final static String DEFAULT_PATH = "img/no-cover.jpg";
 
 	public Cover() throws FileNotFoundException {	
 		
-		this.getStyleClass().add("cover");
+		super(new Image(new FileInputStream(DEFAULT_PATH)));
 		
-		FileInputStream fileStream = new FileInputStream(DEFAULT_PATH);
-		
-		Image coverImage = new Image(fileStream);
-		ImageView coverView = new ImageView(coverImage);
-		
-		this.getChildren().add(coverView);
 	}
 	
 	

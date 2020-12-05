@@ -3,27 +3,38 @@ package presentation.application;
 import java.util.HashMap;
 import java.util.Map;
 
+import business.data.Playlist;
+import business.services.MP3Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import presentation.scenes.firstscene.PlayerScene;
+import presentation.scenes.ViewController;
 import presentation.scenes.secondscene.SecondScene;
 import presentation.scenes.thirdscene.ThirdScene;
+import presentation.uicomponents.controlview.ControlViewController;
 
 public class Main extends Application {
 	
 	public enum Scenes {FIRST_SCENE, SECOND_SCENE, THIRD_SCENE};
+	
 	private Stage primaryStage;
 	private Map<Scenes, Pane> scenes;
+	
+	private MP3Player player;
 
 	@Override
 	public void init() {
 		
+		this.player = new MP3Player();
+		player.setPlaylist(new Playlist("music/Playlist1.m3u"));
+		
 		scenes = new HashMap<>();
+		ViewController controller;
 
-		scenes.put(Scenes.FIRST_SCENE, new PlayerScene());
+		controller = new ControlViewController(player);
+		scenes.put(Scenes.FIRST_SCENE, controller.getRootView());
 		scenes.put(Scenes.SECOND_SCENE, new SecondScene());
 		scenes.put(Scenes.THIRD_SCENE, new ThirdScene());
 		
@@ -47,6 +58,7 @@ public class Main extends Application {
 			switchScene(Scenes.FIRST_SCENE);
 
 			primaryStage.show();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
