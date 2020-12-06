@@ -1,37 +1,31 @@
 package presentation.uicomponents.controlview;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import presentation.application.AppColor;
 import presentation.uicomponents.buttons.RoundButton;
 
 public class ControlView extends HBox {
 	
-	public static final String PLAY_SIGN = "\u25B6";
-	public static final String SKIP_SIGN = "\u25B6\u25AE";
-	public static final String SKIPBACK_SIGN = "\u25AE\u25C0";
-	public static final String PAUSE_SIGN = "\u25AE\u25AE";
-	public static final String STOP_SIGN = "\u25A0";
-	public static final String REPEAT_SIGN = "\u27F2";
-	public static final String SHUFFLE_SIGN = "\u292E";
-	
-	Button playPauseButton;
-	Button stopButton;
-	Button skipButton;
-	Button repeatButton;
-	Button shuffleButton;
-	Button skipBackButton;
+	protected Map<Symbol, Button> buttonMap;
 
 	public ControlView() {
 
+		buttonMap = new HashMap<>();
+		
 		initializeButtons();
 
 		this.getChildren().addAll(
-				repeatButton, 
-				skipBackButton, 
-				stopButton, 
-				playPauseButton, 
-				skipButton, 
-				shuffleButton
+				buttonMap.get(Symbol.REPEAT),
+				buttonMap.get(Symbol.SKIPBACK), 
+				buttonMap.get(Symbol.STOP), 
+				buttonMap.get(Symbol.PLAY), 
+				buttonMap.get(Symbol.SKIP), 
+				buttonMap.get(Symbol.SHUFFLE)
 		);
 		
 		this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -39,13 +33,25 @@ public class ControlView extends HBox {
 	}
 	
 	private void initializeButtons() {
-
-		playPauseButton = new RoundButton(PLAY_SIGN);
-		stopButton = new RoundButton(STOP_SIGN);
-		skipButton = new RoundButton(SKIP_SIGN);
-		repeatButton = new RoundButton(REPEAT_SIGN);
-		shuffleButton = new RoundButton(SHUFFLE_SIGN);
-		skipBackButton = new RoundButton(SKIPBACK_SIGN);
+		
+		for (Symbol symbol : Symbol.values()) {
+			
+			if (symbol.equals(Symbol.PAUSE)) // PLAY & PAUSE will be combined into one button
+				continue;
+			
+			RoundButton toAdd = new RoundButton(symbol.unicode());
+			
+			Color fillColor = (symbol.equals(Symbol.REPEAT) || symbol.equals(Symbol.SHUFFLE)) 
+								? AppColor.INACTIVE.color() 
+								: AppColor.ACCENT_1.color();
+									
+									
+			toAdd.setTextFill(fillColor);
+			toAdd.setBackgroundColor(AppColor.ELEMENT.hex());
+			
+			buttonMap.put(symbol, toAdd);
+			
+		}
 		
 	}
 	

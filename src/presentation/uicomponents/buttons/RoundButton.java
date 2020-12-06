@@ -22,4 +22,14 @@ public class RoundButton extends Button {
 
 	}
 	
+	public void setBackgroundColor(String hex) {
+		String newStyle = "-fx-background-color: " + hex + ";";
+		addStyle(newStyle);
+	}
+	
+	private void addStyle(String newStyle) {
+		String oldStyle = this.getStyle();
+		this.setStyle(oldStyle + newStyle);
+	}
+	
 }

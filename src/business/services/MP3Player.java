@@ -23,7 +23,7 @@ public class MP3Player extends MusicPlayer {
 		
 		if (audioPlayer != null) {
 			audioPlayer.play();
-			playingState = playingState.switchState();
+			switchPlayingState();
 			
 		} else if (tracklist != null) {
 			Track currentTrack = tracklist.current();
@@ -51,7 +51,7 @@ public class MP3Player extends MusicPlayer {
 	public void pause() {
 		if (audioPlayer != null && playingState.playing()) {
 			audioPlayer.pause();
-			playingState = playingState.switchState();
+			switchPlayingState();
 		}
 	}
 
@@ -105,11 +105,18 @@ public class MP3Player extends MusicPlayer {
 	@Override
 	public void toggleShuffle() {
 		shuffleState = shuffleState.switchState();
+		shuffleStateProperty.set(shuffleState);
 	}
 
 	@Override
 	public void toggleRepeat() {
 		repeatState = repeatState.nextState();
+		repeatStateProperty.set(repeatState);
+	}
+	
+	private void switchPlayingState() {
+		playingState = playingState.switchState();
+		playingStateProperty.set(playingState);
 	}
 
 }

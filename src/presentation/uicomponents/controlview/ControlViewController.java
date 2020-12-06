@@ -1,9 +1,16 @@
 package presentation.uicomponents.controlview;
 
 import business.services.MP3Player;
+import business.services.util.PlayingState;
+import business.services.util.RepeatState;
+import business.services.util.ShuffleState;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import presentation.application.AppColor;
 import presentation.scenes.ViewController;
 
 public class ControlViewController extends ViewController {
@@ -23,12 +30,12 @@ public class ControlViewController extends ViewController {
 		
 		ControlView view = new ControlView();
 		
-		this.playPauseButton = view.playPauseButton;
-		this.stopButton = view.stopButton;
-		this.skipButton = view.skipButton;
-		this.repeatButton = view.repeatButton;
-		this.shuffleButton = view.shuffleButton;
-		this.skipBackButton = view.skipBackButton;
+		this.playPauseButton = view.buttonMap.get(Symbol.PLAY);
+		this.stopButton = view.buttonMap.get(Symbol.STOP);
+		this.skipButton = view.buttonMap.get(Symbol.SKIP);
+		this.repeatButton = view.buttonMap.get(Symbol.REPEAT);
+		this.shuffleButton = view.buttonMap.get(Symbol.SHUFFLE);
+		this.skipBackButton = view.buttonMap.get(Symbol.SKIPBACK);
 		
 		rootView = view;
 		
@@ -38,83 +45,76 @@ public class ControlViewController extends ViewController {
 	
 	@Override
 	public void init() {
-		
-		playPauseButton.addEventHandler(ActionEvent.ACTION, 
-			event -> {
-				
-				if (!player.getPlayingState().playing())				
-					player.play();
-				else
-					player.pause();
-				
-				updateGUI();
-			});
-		
-		stopButton.addEventHandler(ActionEvent.ACTION, 
-				event -> {
-					player.stop();
-					updateGUI();
-				});
-		
-		skipButton.addEventHandler(ActionEvent.ACTION, 
-				event -> {
-					player.skip();
-					updateGUI();
-				});
-		
-		skipBackButton.addEventHandler(ActionEvent.ACTION, 
-				event -> {
-					player.skipBack();
-					updateGUI();
-				});
-		
-		repeatButton.addEventHandler(ActionEvent.ACTION, 
-				event -> {
-					player.toggleRepeat();
-					updateGUI();
-				});
-		
-		shuffleButton.addEventHandler(ActionEvent.ACTION, 
-				event -> {
-					player.toggleShuffle();
-					updateGUI();
-				});
-		
+		initializeHandlers();
+		initializeListeners();
 	}
 	
 	public Pane getRootView() {
 		return rootView;
 	}
 	
-	private void updateGUI() {
-		updatePlayButtonGUI();
-		updateRepeatButtonGUI();
-		updateShuffleButtonGUI();
-	}
-	
-	private void updatePlayButtonGUI() {
-		if (player.getPlayingState().playing())
-			playPauseButton.setText(ControlView.PAUSE_SIGN);
-		else
-			playPauseButton.setText(ControlView.PLAY_SIGN);
-	}
-	
-	private void updateRepeatButtonGUI() {
+	private void initializeHandlers() {
 		
-		if (player.getRepeatState().repeatAll()) {
-			// update
-		} else if (player.getRepeatState().repeatOne()) {
-			// update
-		} else
-			repeatButton.setText(ControlView.REPEAT_SIGN);
+		playPauseButton.addEventHandler(ActionEvent.ACTION, 
+				event -> {
+					if (!player.getPlayingState().playing())				
+						player.play();
+					else
+						player.pause();
+				});
+			
+		stopButton.addEventHandler(ActionEvent.ACTION, event -> player.stop() );
+		skipButton.addEventHandler(ActionEvent.ACTION, event -> player.skip() );
+		repeatButton.addEventHandler(ActionEvent.ACTION, event -> player.toggleRepeat() );		
+		shuffleButton.addEventHandler(ActionEvent.ACTION, event -> player.toggleShuffle() );
+		skipBackButton.addEventHandler(ActionEvent.ACTION, event -> player.skipBack() );
 	}
 	
-	private void updateShuffleButtonGUI() {
-		if (player.getShuffleState().active()) {
-			// update
-		} else {
-			shuffleButton.setText(ControlView.SHUFFLE_SIGN);
-		}
+	
+	private void initializeListeners() {
+		
+			player.playingStateProperty().addListener(
+				new ChangeListener<>() {
+					@Override
+					public void changed(ObservableValue<? extends PlayingState> observableValue, PlayingState oldValue, PlayingState newValue) {		
+						String newSign = newValue.equals(PlayingState.PLAY) ? Symbol.PAUSE.unicode() : Symbol.PLAY.unicode();
+						playPauseButton.setText(newSign);				
+					}	
+				});
+			
+			player.shuffleStateProperty().addListener(
+				new ChangeListener<>() {
+					@Override
+					public void changed(ObservableValue<? extends ShuffleState> observableValue, ShuffleState oldValue, ShuffleState newValue) {
+						Color newColor = newValue.equals(ShuffleState.ACTIVE) ? AppColor.ACCENT_1.color() : AppColor.INACTIVE.color();
+						shuffleButton.setTextFill(newColor);
+					}
+				});
+			
+			player.repeatStateProperty().addListener(
+				new ChangeListener<>() {
+
+					@Override
+					public void changed(ObservableValue<? extends RepeatState> observableValue, RepeatState oldValue, RepeatState newValue) {
+						Color newColor;
+						switch(newValue) {
+							case ALL:
+								newColor = AppColor.ACCENT_1.color();
+								break;
+							case SINGLE:
+								newColor = AppColor.ACCENT_2.color();
+								break;
+							case NONE: // FALLTHROUGH
+							default:
+								newColor = AppColor.INACTIVE.color();
+						}
+						repeatButton.setTextFill(newColor);
+					}
+					
+				}
+				
+				);
+		
 	}
 
 }
