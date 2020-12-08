@@ -21,6 +21,7 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 	protected SimpleObjectProperty<RepeatState> repeatStateProperty;
 	protected SimpleObjectProperty<ShuffleState> shuffleStateProperty;
 	protected SimpleObjectProperty<PlayingState> playingStateProperty;
+	protected SimpleObjectProperty<Track> activeTrackProperty;
 	
 	public MusicPlayer() {
 		
@@ -29,6 +30,7 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 		repeatStateProperty = new SimpleObjectProperty<>();
 		shuffleStateProperty = new SimpleObjectProperty<>();
 		playingStateProperty = new SimpleObjectProperty<>();
+		activeTrackProperty = new SimpleObjectProperty<>();
 		
 		repeatState = RepeatState.NONE;
 		shuffleState = ShuffleState.INACTIVE;
@@ -61,6 +63,10 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 	
 	public SimpleObjectProperty<PlayingState> playingStateProperty() {
 		return playingStateProperty;
+	}
+	
+	public SimpleObjectProperty<Track> activeTrackProperty() {
+		return activeTrackProperty;
 	}
 	
 }

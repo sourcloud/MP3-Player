@@ -11,6 +11,11 @@ public class MP3Player extends MusicPlayer {
 
 	public MP3Player() {
 		super();
+		tracklist = new Playlist();
+	}
+	
+	public Playlist getPlaylist() {
+		return tracklist;
 	}
 	
 	@Override
@@ -38,6 +43,7 @@ public class MP3Player extends MusicPlayer {
 			stop();
 		
 		audioPlayer = minim.loadMP3File(pathToFile);
+		activeTrackProperty.set(new Track(pathToFile));
 		play();
 	}
 	

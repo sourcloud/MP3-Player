@@ -10,10 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import presentation.scenes.ViewController;
+import presentation.scenes.firstscene.PlayerScene;
 import presentation.scenes.secondscene.SecondScene;
 import presentation.scenes.thirdscene.ThirdScene;
-import presentation.uicomponents.controlview.ControlViewController;
 
 public class Main extends Application {
 	
@@ -31,10 +30,8 @@ public class Main extends Application {
 		player.setPlaylist(new Playlist("music/Playlist1.m3u"));
 		
 		scenes = new HashMap<>();
-		ViewController controller;
 
-		controller = new ControlViewController(player);
-		scenes.put(Scenes.FIRST_SCENE, controller.getRootView());
+		scenes.put(Scenes.FIRST_SCENE, new PlayerScene(player));
 		scenes.put(Scenes.SECOND_SCENE, new SecondScene());
 		scenes.put(Scenes.THIRD_SCENE, new ThirdScene());
 		

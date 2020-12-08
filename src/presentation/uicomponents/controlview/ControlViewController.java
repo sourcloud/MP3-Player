@@ -110,10 +110,7 @@ public class ControlViewController extends ViewController {
 						}
 						repeatButton.setTextFill(newColor);
 					}
-					
-				}
-				
-				);
+				});
 		
 	}
 

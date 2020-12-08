@@ -1,16 +1,27 @@
 package presentation.uicomponents.songview;
 
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class SongView extends AnchorPane {
 
-	public SongView() {
+	protected Cover cover;
+	protected SongInformation songInfo;
 	
-		CoverAndInfoStack coverAndInfo = new CoverAndInfoStack();		
-		this.getChildren().add(coverAndInfo);
+	public SongView() {
+			
+		cover = new Cover();
+		this.getChildren().add(cover);
 		
-		this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		songInfo = new SongInformation();
+		this.getChildren().add(songInfo);
 		
+		cover.maxHeight(400);
+		cover.maxWidth(400);
+
 	}
 	
+	public ImageView getCover() {
+		return cover;
+	}
 }
