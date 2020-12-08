@@ -18,8 +18,8 @@ public class Cover extends ImageView {
 		super();
 		
 		try (FileInputStream fis = new FileInputStream(DEFAULT_PATH)) {
-			defaultImage = new Image(fis, 500, 500, false, true);
-			this.setImage(defaultImage);
+			defaultImage = new Image(fis, 500, 500, true, true);
+			setImage(defaultImage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -34,16 +34,15 @@ public class Cover extends ImageView {
 	}
 	
 	public void setCover(byte[] coverImageArray) {
-		
-		if (coverImageArray != null) {			
-			try (ByteArrayInputStream bis = new ByteArrayInputStream(coverImageArray)) {
-				this.setImage(new Image(bis, 500, 500, false, true));
 				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		try (ByteArrayInputStream bis = new ByteArrayInputStream(coverImageArray)) {
+			setImage(new Image(bis, 500, 500, true, true));
+			
+		} catch (IOException e) {
+			setImage(defaultImage);
 		}
 	}
+
 	
 	
 }

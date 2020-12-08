@@ -42,12 +42,12 @@ public class SongViewController extends ViewController {
 			new ChangeListener<>() {
 
 				@Override
-				public void changed(ObservableValue<? extends Track> observable, Track oldValue, Track newValue) {
-					songInfo.setTitle(newValue.getTitle());
-					songInfo.setArtist(newValue.getArtist());
-					songInfo.setAlbum(newValue.getAlbum());
+				public void changed(ObservableValue<? extends Track> observable, Track oldTrack, Track newTrack) {
+					songInfo.setTitle(newTrack.getTitle());
+					songInfo.setArtist(newTrack.getArtist());
+					songInfo.setAlbum(newTrack.getAlbum());
 					
-					cover.setCover(newValue.getCover());
+					cover.setCover(newTrack.getCover());
 				}
 				
 			});

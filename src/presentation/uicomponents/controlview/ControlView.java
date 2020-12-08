@@ -14,8 +14,6 @@ public class ControlView extends HBox {
 	protected Map<Symbol, Button> buttonMap;
 
 	public ControlView() {
-
-		buttonMap = new HashMap<>();
 		
 		initializeButtons();
 
@@ -33,6 +31,8 @@ public class ControlView extends HBox {
 	}
 	
 	private void initializeButtons() {
+		
+		buttonMap = new HashMap<>();
 		
 		for (Symbol symbol : Symbol.values()) {
 			

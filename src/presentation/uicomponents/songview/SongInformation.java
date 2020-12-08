@@ -1,13 +1,14 @@
 package presentation.uicomponents.songview;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class SongInformation extends VBox {
 	
-	private final String defaultTitle = "Some Title";
-	private final String defaultArtist = "Some Artist";
-	private final String defaultAlbum = "Some Album";
+	private static final String DEFAULT_TITLE = "No Title";
+	private static final String DEFAULT_ARTIST = "No Artist";
+	private static final String DEFAULT_ALBUM = "No Album";
 	
 	private Label titleLabel;
 	private Label artistLabel;
@@ -17,9 +18,9 @@ public class SongInformation extends VBox {
 		
 		this.getStyleClass().add("info");
 
-		this.titleLabel = new Label(defaultTitle);
-		this.artistLabel = new Label(defaultArtist);
-		this.albumLabel = new Label(defaultAlbum);
+		this.titleLabel = new Label(DEFAULT_TITLE);
+		this.artistLabel = new Label(DEFAULT_ARTIST);
+		this.albumLabel = new Label(DEFAULT_ALBUM);
 		
 		this.getChildren().addAll(
 			titleLabel,
@@ -27,18 +28,23 @@ public class SongInformation extends VBox {
 			albumLabel
 		);
 		
+		this.setAlignment(Pos.BOTTOM_CENTER);
+		
 	}
 	
 	public void setTitle(String title) {
-		titleLabel.setText(title);
+		String toSet = (title != null && !title.isBlank()) ? title : DEFAULT_TITLE;
+		titleLabel.setText(toSet);
 	}
 	
 	public void setArtist(String artist) {
-		artistLabel.setText(artist);
+		String toSet = (artist != null && !artist.isBlank()) ? artist : DEFAULT_ARTIST;
+		artistLabel.setText(toSet);
 	}
 	
 	public void setAlbum(String album) {
-		albumLabel.setText(album);
+		String toSet = (album != null && !album.isBlank()) ? album : DEFAULT_ARTIST;
+		albumLabel.setText(toSet);
 	}
 
 }

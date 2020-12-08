@@ -1,27 +1,22 @@
 package presentation.scenes.firstscene;
 
 import business.services.MP3Player;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import presentation.uicomponents.controlview.ControlViewController;
+import presentation.uicomponents.loadview.LoadViewController;
 import presentation.uicomponents.songview.SongViewController;
 
 public class PlayerScene extends BorderPane {
 	
 	public PlayerScene(MP3Player player) {
 		
-		this.getStylesheets().add("/presentation/scenes/firstscene/style.css");
+		this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 		
-		VBox header = new VBox();
-		
-		Label title = new Label("Main Scene");
-		Label subtitle = new Label("...");
-		
-		header.getChildren().addAll(title, subtitle);
-		
-		this.setTop(header);
+		// top
+		Pane loadView = new LoadViewController(player).getRootView();
+		this.setTop(loadView);
 		
 		// center
 		Pane songView = new SongViewController(player).getRootView();
@@ -30,7 +25,7 @@ public class PlayerScene extends BorderPane {
 		// bottom
 		Pane controlView = new ControlViewController(player).getRootView();
 		this.setBottom(controlView);
+		
 	}
-
 
 }

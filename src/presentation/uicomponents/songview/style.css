@@ -1,8 +1,12 @@
+
 * {
-	-fx-padding: 5px;
 	-fx-background-color: rgba(0,0,0,0);
 }
 
 .label {
-	-fx-text-fill: #FFFFFF;
+	-fx-padding: 5px;
+	-fx-font-size: 14pt;
+	-fx-text-fill: #faa307;
+	-fx-background-color: rgba(0,0,0,0);
 }
+

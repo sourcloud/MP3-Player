@@ -1,9 +1,10 @@
 package presentation.uicomponents.songview;
 
+import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
-public class SongView extends AnchorPane {
+public class SongView extends VBox {
 
 	protected Cover cover;
 	protected SongInformation songInfo;
@@ -11,13 +12,13 @@ public class SongView extends AnchorPane {
 	public SongView() {
 			
 		cover = new Cover();
-		this.getChildren().add(cover);
-		
 		songInfo = new SongInformation();
-		this.getChildren().add(songInfo);
+
+		this.getChildren().addAll(cover, songInfo);
 		
-		cover.maxHeight(400);
-		cover.maxWidth(400);
+		this.setAlignment(Pos.CENTER);
+		
+		this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 
 	}
 	

@@ -27,7 +27,6 @@ public class Main extends Application {
 	public void init() {
 		
 		this.player = new MP3Player();
-		player.setPlaylist(new Playlist("music/Playlist1.m3u"));
 		
 		scenes = new HashMap<>();
 
@@ -43,8 +42,8 @@ public class Main extends Application {
 		try {
 			
 			this.primaryStage = primaryStage;
-			primaryStage.setMinHeight(450);;
-			primaryStage.setMinWidth(450);
+			primaryStage.setMinHeight(750);
+			primaryStage.setMinWidth(500);
 			
 			BorderPane root = new BorderPane();
 

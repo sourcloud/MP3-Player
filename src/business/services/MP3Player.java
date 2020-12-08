@@ -21,6 +21,7 @@ public class MP3Player extends MusicPlayer {
 	@Override
 	public void setPlaylist(Playlist tracklist) {
 		this.tracklist = tracklist;
+		activePlaylistProperty.set(tracklist);
 	}
 	
 	@Override

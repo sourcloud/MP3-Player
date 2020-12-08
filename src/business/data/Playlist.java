@@ -1,5 +1,6 @@
 package business.data;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import business.services.util.MathUtil;
 public class Playlist implements Cycle<Track> {
 	
 	private List<Track> tracklist;
+	private String name;
 	private int currentIndex = 0;
 	
 	public Playlist() {
@@ -17,11 +19,25 @@ public class Playlist implements Cycle<Track> {
 	}
 	
 	public Playlist(String pathToM3U) {
+		String[] nameParts = pathToM3U.split("/");
+		String lastPart = nameParts[nameParts.length-1];
+		name = lastPart;
 		tracklist = M3U_IO.importPlaylist(pathToM3U);
+	}
+	
+	public Playlist(File file) {
+		String[] nameParts = file.getAbsolutePath().split("/");
+		String lastPart = nameParts[nameParts.length-1];
+		name = lastPart;
+		tracklist = M3U_IO.importPlaylist(file);
 	}
 	
 	public static Playlist importPlaylist(String pathToM3U) {
 		return new Playlist(pathToM3U);
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public List<Track> getTracklist() {

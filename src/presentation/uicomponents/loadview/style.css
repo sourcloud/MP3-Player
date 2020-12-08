@@ -1,0 +1,24 @@
+* {
+	-fx-background-color: #16213e;
+	-fx-alignment: center;
+	-fx-padding: 5px;
+}
+
+.button {
+	
+	-fx-font-size: 16pt;
+	
+	-fx-border-radius: 50%;	
+    -fx-border-insets: 5px;
+    
+    -fx-background-color: #0f3460;
+    -fx-background-radius: 50%;
+	-fx-background-insets: 5px;
+
+}
+
+.label {
+	-fx-font-size: 14pt;
+	-fx-text-fill: #faa307;
+	-fx-background-color: rgba(0,0,0,0);
+}

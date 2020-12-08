@@ -1,5 +1,6 @@
 package business.abstracts;
 
+import business.data.Playlist;
 import business.data.Track;
 import business.interfaces.MediaPlayer;
 import business.services.util.PlayingState;
@@ -22,6 +23,7 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 	protected SimpleObjectProperty<ShuffleState> shuffleStateProperty;
 	protected SimpleObjectProperty<PlayingState> playingStateProperty;
 	protected SimpleObjectProperty<Track> activeTrackProperty;
+	protected SimpleObjectProperty<Playlist> activePlaylistProperty;
 	
 	public MusicPlayer() {
 		
@@ -31,6 +33,7 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 		shuffleStateProperty = new SimpleObjectProperty<>();
 		playingStateProperty = new SimpleObjectProperty<>();
 		activeTrackProperty = new SimpleObjectProperty<>();
+		activePlaylistProperty = new SimpleObjectProperty<>();
 		
 		repeatState = RepeatState.NONE;
 		shuffleState = ShuffleState.INACTIVE;
@@ -67,6 +70,10 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 	
 	public SimpleObjectProperty<Track> activeTrackProperty() {
 		return activeTrackProperty;
+	}
+	
+	public SimpleObjectProperty<Playlist> activePlaylistProperty() {
+		return activePlaylistProperty;
 	}
 	
 }

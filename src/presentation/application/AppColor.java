@@ -8,7 +8,7 @@ public enum AppColor {
 	BACKGROUND("#16213e"),
 	ELEMENT("#0f3460"),
 	ACCENT_1("#5fb9b0"),
-	ACCENT_2("#f6c90e"),
+	ACCENT_2("#faa307"),
 	INACTIVE("#4b5d67"),
 	ERROR("#e94560");
 	
