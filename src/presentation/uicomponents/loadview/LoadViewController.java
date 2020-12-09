@@ -46,32 +46,29 @@ public class LoadViewController extends ViewController {
 		loadButton.addEventHandler(ActionEvent.ACTION, 
 			event -> {
 				
-				FileChooser fileChooser = new FileChooser();
-				fileChooser.setInitialDirectory(new File("music"));
-				fileChooser.setTitle("Open Playlist");
-				fileChooser.getExtensionFilters().add(new ExtensionFilter("Playlist Files", "*.m3u"));
+				File selected = chooseM3U();
 				
-				File selectedFile = fileChooser.showOpenDialog(new Stage());
-				
-				if (selectedFile != null) {
-					player.setPlaylist(new Playlist(selectedFile));
-				}
+				if (selected != null)
+					player.setPlaylist(new Playlist(selected));
 				
 			});
 	}
 	
 	private void initializeListeners() {
 		
-		player.activePlaylistProperty().addListener(
-			new ChangeListener<>() {
-
-				@Override
-				public void changed(ObservableValue<? extends Playlist> observable, Playlist oldPlaylist, Playlist newPlaylist) {
-					nameLabel.setText(newPlaylist.getName());
-				}
-
-			});
+		player.activePlaylistProperty().addListener((observable, oldPlaylist, newPlaylist) -> 
+			nameLabel.setText(newPlaylist.getName()) 
+		);
 		
+	}
+	
+	private File chooseM3U() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setInitialDirectory(new File("music"));
+		fileChooser.setTitle("Open Playlist");
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Playlist Files", "*.m3u"));
+		
+		return fileChooser.showOpenDialog(new Stage());
 	}
 
 }

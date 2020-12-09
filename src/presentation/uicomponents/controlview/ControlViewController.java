@@ -2,10 +2,7 @@ package presentation.uicomponents.controlview;
 
 import business.services.MP3Player;
 import business.services.util.PlayingState;
-import business.services.util.RepeatState;
 import business.services.util.ShuffleState;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -57,7 +54,8 @@ public class ControlViewController extends ViewController {
 		
 		playPauseButton.addEventHandler(ActionEvent.ACTION, 
 				event -> {
-					if (!player.getPlayingState().playing())				
+
+					if (!player.getPlayingState().playing())
 						player.play();
 					else
 						player.pause();
@@ -73,44 +71,41 @@ public class ControlViewController extends ViewController {
 	
 	private void initializeListeners() {
 		
-			player.playingStateProperty().addListener(
-				new ChangeListener<>() {
-					@Override
-					public void changed(ObservableValue<? extends PlayingState> observableValue, PlayingState oldValue, PlayingState newValue) {		
-						String newSign = newValue.equals(PlayingState.PLAY) ? Symbol.PAUSE.unicode() : Symbol.PLAY.unicode();
-						playPauseButton.setText(newSign);				
-					}	
-				});
+			player.playingStateProperty().addListener((observable, oldValue, newValue) -> {
+				
+				String newSign = newValue.equals(PlayingState.PLAY) 
+									? Symbol.PAUSE.unicode() 
+									: Symbol.PLAY.unicode();
+				
+				playPauseButton.setText(newSign);
+			});
 			
-			player.shuffleStateProperty().addListener(
-				new ChangeListener<>() {
-					@Override
-					public void changed(ObservableValue<? extends ShuffleState> observableValue, ShuffleState oldValue, ShuffleState newValue) {
-						Color newColor = newValue.equals(ShuffleState.ACTIVE) ? AppColor.ACCENT_1.color() : AppColor.INACTIVE.color();
-						shuffleButton.setTextFill(newColor);
-					}
-				});
+			player.shuffleStateProperty().addListener((observable, oldValue, newValue) -> {
+				
+				Color newColor = newValue.equals(ShuffleState.ACTIVE) 
+									? AppColor.ACCENT_1.color() 
+									: AppColor.INACTIVE.color();
+									
+				shuffleButton.setTextFill(newColor);
+			});
 			
-			player.repeatStateProperty().addListener(
-				new ChangeListener<>() {
-
-					@Override
-					public void changed(ObservableValue<? extends RepeatState> observableValue, RepeatState oldValue, RepeatState newValue) {
-						Color newColor;
-						switch(newValue) {
-							case ALL:
-								newColor = AppColor.ACCENT_1.color();
-								break;
-							case SINGLE:
-								newColor = AppColor.ACCENT_2.color();
-								break;
-							case NONE: // FALLTHROUGH
-							default:
-								newColor = AppColor.INACTIVE.color();
-						}
-						repeatButton.setTextFill(newColor);
-					}
-				});
+			player.repeatStateProperty().addListener((observable, oldValue, newValue) -> {
+					
+				Color newColor;
+				switch(newValue) {
+					case ALL:
+						newColor = AppColor.ACCENT_1.color();
+						break;
+					case SINGLE:
+						newColor = AppColor.ACCENT_2.color();
+						break;
+					case NONE: // FALLTHROUGH
+					default:
+						newColor = AppColor.INACTIVE.color();
+						break;
+				}
+				repeatButton.setTextFill(newColor);
+			});
 		
 	}
 

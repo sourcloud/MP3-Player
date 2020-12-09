@@ -1,9 +1,6 @@
 package presentation.uicomponents.songview;
 
-import business.data.Track;
 import business.services.MP3Player;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.layout.Pane;
 import presentation.scenes.ViewController;
 
@@ -38,19 +35,15 @@ public class SongViewController extends ViewController {
 	}
 	
 	private void initializeListeners() {
-		player.activeTrackProperty().addListener(
-			new ChangeListener<>() {
-
-				@Override
-				public void changed(ObservableValue<? extends Track> observable, Track oldTrack, Track newTrack) {
-					songInfo.setTitle(newTrack.getTitle());
-					songInfo.setArtist(newTrack.getArtist());
-					songInfo.setAlbum(newTrack.getAlbum());
-					
-					cover.setCover(newTrack.getCover());
-				}
-				
-			});
+		
+		player.activeTrackProperty().addListener((observable, oldTrack, newTrack) -> {
+			
+			songInfo.setTitle(newTrack.getTitle());
+			songInfo.setArtist(newTrack.getArtist());
+			songInfo.setAlbum(newTrack.getAlbum());
+			
+			cover.setCover(newTrack.getCover());
+		});
 	}
 
 }

@@ -11,7 +11,6 @@ public class MP3Player extends MusicPlayer {
 
 	public MP3Player() {
 		super();
-		tracklist = new Playlist();
 	}
 	
 	public Playlist getPlaylist() {

@@ -3,7 +3,6 @@ package presentation.application;
 import java.util.HashMap;
 import java.util.Map;
 
-import business.data.Playlist;
 import business.services.MP3Player;
 import javafx.application.Application;
 import javafx.scene.Scene;

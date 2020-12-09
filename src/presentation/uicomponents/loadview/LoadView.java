@@ -6,9 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import presentation.application.AppColor;
-import presentation.uicomponents.buttons.RoundButton;
-import presentation.uicomponents.buttons.SquareButton;
-import presentation.uicomponents.controlview.Symbol;
 
 public class LoadView extends HBox {
 	
@@ -30,7 +27,7 @@ public class LoadView extends HBox {
 								
 		this.setAlignment(Pos.CENTER);
 		
-		this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		this.getStylesheets().add(getClass().getResource("load_style.css").toExternalForm());
 	}
 
 }

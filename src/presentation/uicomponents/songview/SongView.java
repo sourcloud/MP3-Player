@@ -18,7 +18,7 @@ public class SongView extends VBox {
 		
 		this.setAlignment(Pos.CENTER);
 		
-		this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		this.getStylesheets().add(getClass().getResource("song_style.css").toExternalForm());
 
 	}
 	

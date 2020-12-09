@@ -26,7 +26,7 @@ public class ControlView extends HBox {
 				buttonMap.get(Symbol.SHUFFLE)
 		);
 		
-		this.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		this.getStylesheets().add(getClass().getResource("control_style.css").toExternalForm());
 		
 	}
 	
@@ -44,7 +44,6 @@ public class ControlView extends HBox {
 			Color fillColor = (symbol.equals(Symbol.REPEAT) || symbol.equals(Symbol.SHUFFLE)) 
 								? AppColor.INACTIVE.color() 
 								: AppColor.ACCENT_1.color();
-									
 									
 			toAdd.setTextFill(fillColor);
 			toAdd.setBackgroundColor(AppColor.ELEMENT.hex());
