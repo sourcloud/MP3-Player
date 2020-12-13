@@ -1,6 +1,6 @@
 package presentation.scenes.firstscene;
 
-import business.services.MP3Player;
+import business.abstracts.MusicPlayer;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import presentation.uicomponents.controlview.ControlViewController;
@@ -9,7 +9,7 @@ import presentation.uicomponents.songview.SongViewController;
 
 public class PlayerScene extends BorderPane {
 	
-	public PlayerScene(MP3Player player) {
+	public PlayerScene(MusicPlayer player) {
 		
 		this.getStylesheets().add(getClass().getResource("player_style.css").toExternalForm());
 		

@@ -12,3 +12,18 @@
 	-fx-background-insets: 5px;
 
 }
+
+.label {
+	-fx-font-size: 12pt;
+}
+
+.slider .track {	
+	-fx-pref-height: 3;
+	-fx-background-color: #0f3460;
+}
+
+.slider .thumb {
+	-fx-pref-height: 15;
+	-fx-pref-width: 15;
+	-fx-background-color: #5fb9b0;
+}

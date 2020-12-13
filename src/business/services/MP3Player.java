@@ -4,15 +4,61 @@ import business.abstracts.MusicPlayer;
 import business.data.Playlist;
 import business.data.Track;
 import business.services.util.MathUtil;
+import javafx.application.Platform;
 
 public class MP3Player extends MusicPlayer {
 	
 	private Playlist tracklist; 
+	
+	private Thread playingThread;
+	private Thread positionThread;
 
 	public MP3Player() {
 		super();
+		
+		playingThread = new Thread(() -> {
+			
+			while (!Thread.currentThread().isInterrupted()) {
+				
+				while (playingState.playing())
+					audioPlayer.play();	
+				
+			}
+			
+		});
+		
+		positionThread = new Thread(() -> {
+			
+			while (!Thread.currentThread().isInterrupted()) {
+			
+				if (audioPlayer != null) {
+					
+					if (tracklist.current().getLength() - audioPlayer.position() < 100)
+						skip();
+					
+					Platform.runLater(() -> currentPlaytimeProperty.set(audioPlayer.position()));
+					
+				}
+				
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			
+			}
+			
+		});
+		
+		playingThread.setDaemon(true);
+		positionThread.setDaemon(true);
+		
+		playingThread.start();
+		positionThread.start();
+		
 	}
 	
+	@Override
 	public Playlist getPlaylist() {
 		return tracklist;
 	}
@@ -20,16 +66,15 @@ public class MP3Player extends MusicPlayer {
 	@Override
 	public void setPlaylist(Playlist tracklist) {
 		this.tracklist = tracklist;
-		activePlaylistProperty.set(tracklist);
+		Platform.runLater(() -> activePlaylistProperty.set(tracklist));
 	}
 	
 	@Override
 	public void play() {
 		
-		if (audioPlayer != null) {
-			audioPlayer.play();
+		if (audioPlayer != null && !playingState.playing()) {	
 			switchPlayingState();
-			
+	
 		} else if (tracklist != null) {
 			Track currentTrack = tracklist.current();
 			play(currentTrack);
@@ -41,9 +86,10 @@ public class MP3Player extends MusicPlayer {
 		
 		if (playingState.playing())
 			stop();
-		
+
 		audioPlayer = minim.loadMP3File(pathToFile);
-		activeTrackProperty.set(new Track(pathToFile));
+		Platform.runLater(() -> activeTrackProperty.set(new Track(pathToFile)));
+		
 		play();
 	}
 	
@@ -56,8 +102,8 @@ public class MP3Player extends MusicPlayer {
 	@Override
 	public void pause() {
 		if (audioPlayer != null && playingState.playing()) {
-			audioPlayer.pause();
 			switchPlayingState();
+			audioPlayer.pause();
 		}
 	}
 
@@ -75,6 +121,20 @@ public class MP3Player extends MusicPlayer {
 			final float dbValue = MathUtil.convertLinearToDB(linearValue);
 			audioPlayer.setGain(dbValue);
 		}
+	}
+	
+	public void skipTo(int milliseconds) {
+		
+		if (audioPlayer != null) {
+			
+			if (playingState.playing())
+				stop();
+			
+			audioPlayer.skip(milliseconds);
+			play();
+		}
+		
+		
 	}
 
 	@Override
@@ -111,18 +171,18 @@ public class MP3Player extends MusicPlayer {
 	@Override
 	public void toggleShuffle() {
 		shuffleState = shuffleState.switchState();
-		shuffleStateProperty.set(shuffleState);
+		Platform.runLater(() -> shuffleStateProperty.set(shuffleState));
 	}
 
 	@Override
 	public void toggleRepeat() {
 		repeatState = repeatState.nextState();
-		repeatStateProperty.set(repeatState);
+		Platform.runLater(() -> repeatStateProperty.set(repeatState));
 	}
 	
 	private void switchPlayingState() {
 		playingState = playingState.switchState();
-		playingStateProperty.set(playingState);
+		Platform.runLater(() -> playingStateProperty.set(playingState));
 	}
 
 }

@@ -49,8 +49,14 @@ public interface MediaPlayer<T extends Playable> {
 	void volume(float value);
 	
 	/**
-	 * Sets a playlist of playable 
-	 * @param playlist
+	 * Getter for Playlist
+	 * @return Playlist loaded into player.
+	 */
+	Playlist getPlaylist();
+	
+	/**
+	 * Sets a playlist of playable objects.
+	 * @param playlist Playlist to set.
 	 */
 	void setPlaylist(Playlist playlist);
 	
@@ -63,6 +69,12 @@ public interface MediaPlayer<T extends Playable> {
 	 * Loads and plays previous song on playlist.
 	 */
 	void skipBack();
+	
+	/**
+	 * Skips to given milliseconds.
+	 * @param milliseconds Milliseconds to skip to.
+	 */
+	void skipTo(int milliseconds);
 	
 	/**
 	 * Switches shuffle state.

@@ -71,7 +71,7 @@ public class Track extends Playable {
 		else
 			setMetadataToDefault();
 		
-		length = (int) mp3File.getLengthInSeconds();
+		length = (int) mp3File.getLengthInMilliseconds();
 	}
 	
 	private void setMetadataFromID3v1(Mp3File file) {

@@ -2,13 +2,11 @@ package presentation.uicomponents.loadview;
 
 import java.io.File;
 
+import business.abstracts.MusicPlayer;
 import business.data.Playlist;
-import business.services.MP3Player;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -16,11 +14,11 @@ import presentation.scenes.ViewController;
 
 public class LoadViewController extends ViewController {
 	
-	private MP3Player player;
+	private MusicPlayer player;
 	private Button loadButton;
 	private Label nameLabel;
 	
-	public LoadViewController(MP3Player player) {
+	public LoadViewController(MusicPlayer player) {
 
 		this.player = player;
 		
@@ -43,7 +41,7 @@ public class LoadViewController extends ViewController {
 	
 	private void initializeHandlers() {
 		
-		loadButton.addEventHandler(ActionEvent.ACTION, 
+		loadButton.addEventHandler(MouseEvent.MOUSE_CLICKED, 
 			event -> {
 				
 				File selected = chooseM3U();

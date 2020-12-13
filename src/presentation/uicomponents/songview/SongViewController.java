@@ -1,17 +1,17 @@
 package presentation.uicomponents.songview;
 
-import business.services.MP3Player;
+import business.abstracts.MusicPlayer;
 import javafx.scene.layout.Pane;
 import presentation.scenes.ViewController;
 
 public class SongViewController extends ViewController {
 	
-	private MP3Player player;
+	private MusicPlayer player;
 	
 	private SongInformation songInfo;
 	private Cover cover;
 
-	public SongViewController(MP3Player player) {
+	public SongViewController(MusicPlayer player) {
 		
 		this.player = player;
 		

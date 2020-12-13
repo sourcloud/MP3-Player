@@ -28,5 +28,17 @@ public class MathUtil {
 	public static int getRandomInRange(int min, int max) {
 		return min + (int) (Math.random() * (max - min + 1));
 	}
+	
+	public static int convertMillisecondsToSeconds(int milliseconds) {
+		return milliseconds / 1000;
+	}
+	
+	public static int fullMinuteSeconds(int seconds) {
+		return seconds / 60;
+	}
+	
+	public static int leftoverSeconds(int seconds) {
+		return seconds % 60;
+	}
 
 }

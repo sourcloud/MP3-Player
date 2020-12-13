@@ -3,6 +3,7 @@ package presentation.application;
 import java.util.HashMap;
 import java.util.Map;
 
+import business.abstracts.MusicPlayer;
 import business.services.MP3Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,7 +21,7 @@ public class Main extends Application {
 	private Stage primaryStage;
 	private Map<Scenes, Pane> scenes;
 	
-	private MP3Player player;
+	private MusicPlayer player;
 
 	@Override
 	public void init() {
@@ -57,6 +58,9 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		// kill all threads on window close
+		primaryStage.setOnCloseRequest(event -> System.exit(0));
 	}
 
 	public void switchScene(Scenes toScene) {

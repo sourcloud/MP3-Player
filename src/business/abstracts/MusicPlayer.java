@@ -8,6 +8,8 @@ import business.services.util.RepeatState;
 import business.services.util.ShuffleState;
 import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
 import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
 public abstract class MusicPlayer implements MediaPlayer<Track> {
@@ -25,15 +27,19 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 	protected SimpleObjectProperty<Track> activeTrackProperty;
 	protected SimpleObjectProperty<Playlist> activePlaylistProperty;
 	
+	protected IntegerProperty currentPlaytimeProperty;
+	
 	public MusicPlayer() {
 		
-		minim = new SimpleMinim(true);
+		minim = new SimpleMinim();
 		
 		repeatStateProperty = new SimpleObjectProperty<>();
 		shuffleStateProperty = new SimpleObjectProperty<>();
 		playingStateProperty = new SimpleObjectProperty<>();
 		activeTrackProperty = new SimpleObjectProperty<>();
 		activePlaylistProperty = new SimpleObjectProperty<>();
+		
+		currentPlaytimeProperty = new SimpleIntegerProperty();
 		
 		repeatState = RepeatState.NONE;
 		shuffleState = ShuffleState.INACTIVE;
@@ -42,6 +48,8 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 		repeatStateProperty.set(repeatState);
 		shuffleStateProperty.set(shuffleState);
 		playingStateProperty.set(playingState);
+		
+		currentPlaytimeProperty.set(0);
 	}
 	
 	public RepeatState getRepeatState() {
@@ -74,6 +82,10 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 	
 	public SimpleObjectProperty<Playlist> activePlaylistProperty() {
 		return activePlaylistProperty;
+	}
+	
+	public IntegerProperty currentPlaytimeProperty() {
+		return currentPlaytimeProperty;
 	}
 	
 }

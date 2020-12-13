@@ -44,34 +44,34 @@ public class Playlist implements Cycle<Track> {
 		return tracklist;
 	}
 	
-	public Track random() {
+	public synchronized Track random() {
 		currentIndex = MathUtil.getRandomInRange(0, tracklist.size() - 1);
 		return tracklist.get(currentIndex);
 	}
 	
 	@Override
-	public boolean hasNext() {
+	public synchronized boolean hasNext() {
 		return currentIndex < tracklist.size() - 1;
 	}
 
 	@Override
-	public boolean hasPrev() {
+	public synchronized boolean hasPrev() {
 		return currentIndex > 0;
 	}
 	
 	@Override
-	public Track current() {
+	public synchronized Track current() {
 		return tracklist.get(currentIndex);
 	}
 
 	@Override
-	public Track next() {
+	public synchronized Track next() {
 		currentIndex = hasNext() ? (currentIndex + 1) : 0;
 		return current();
 	}
 
 	@Override
-	public Track prev() {
+	public synchronized Track prev() {
 		currentIndex = hasPrev() ? (currentIndex - 1) : (tracklist.size() - 1);
 		return current();
 	}
