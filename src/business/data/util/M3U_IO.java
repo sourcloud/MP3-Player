@@ -15,18 +15,26 @@ public class M3U_IO {
 		
 		List<Track> allTracks = new ArrayList<>();
 		
-		try (BufferedReader reader 
-				= new BufferedReader(new FileReader(path))) {
+		
+		new Thread(() -> {
 			
-			String pathToMP3;
-			
-			while ((pathToMP3 = reader.readLine()) != null) {
-				Track nextTrack = new Track(pathToMP3);
-				allTracks.add(nextTrack);
+			try (BufferedReader reader 
+					= new BufferedReader(new FileReader(path))) {
+				
+				String pathToMP3;
+				
+				while ((pathToMP3 = reader.readLine()) != null) {
+					
+					if (!pathToMP3.startsWith("#")) {				// ignore Metdadata			
+						Track nextTrack = new Track(pathToMP3);
+						allTracks.add(nextTrack);
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			
+		}).start();
 		
 		return allTracks;
 		

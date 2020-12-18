@@ -1,4 +1,4 @@
-package presentation.scenes.firstscene;
+package presentation.scenes.playerscene;
 
 import business.abstracts.MusicPlayer;
 import javafx.scene.layout.BorderPane;

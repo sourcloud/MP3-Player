@@ -16,10 +16,6 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 
 	protected SimpleMinim minim;
 	protected SimpleAudioPlayer audioPlayer;
-
-	protected RepeatState repeatState;
-	protected ShuffleState shuffleState;
-	protected PlayingState playingState;
 	
 	protected SimpleObjectProperty<RepeatState> repeatStateProperty;
 	protected SimpleObjectProperty<ShuffleState> shuffleStateProperty;
@@ -41,27 +37,23 @@ public abstract class MusicPlayer implements MediaPlayer<Track> {
 		
 		currentPlaytimeProperty = new SimpleIntegerProperty();
 		
-		repeatState = RepeatState.NONE;
-		shuffleState = ShuffleState.INACTIVE;
-		playingState = PlayingState.PAUSE;
-		
-		repeatStateProperty.set(repeatState);
-		shuffleStateProperty.set(shuffleState);
-		playingStateProperty.set(playingState);
+		repeatStateProperty.set(RepeatState.NONE);
+		shuffleStateProperty.set(ShuffleState.INACTIVE);
+		playingStateProperty.set(PlayingState.PAUSE);
 		
 		currentPlaytimeProperty.set(0);
 	}
 	
 	public RepeatState getRepeatState() {
-		return repeatState;
+		return repeatStateProperty.get();
 	}
 	
 	public ShuffleState getShuffleState() {
-		return shuffleState;
+		return shuffleStateProperty.get();
 	}
 	
 	public PlayingState getPlayingState() {
-		return playingState;
+		return playingStateProperty.get();
 	}
 	
 	public SimpleObjectProperty<RepeatState> repeatStateProperty() {

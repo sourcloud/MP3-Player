@@ -12,6 +12,7 @@ public class SongView extends VBox {
 	public SongView() {
 			
 		cover = new Cover();
+		
 		songInfo = new SongInformation();
 
 		this.getChildren().addAll(cover, songInfo);

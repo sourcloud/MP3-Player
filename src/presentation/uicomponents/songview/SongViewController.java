@@ -1,6 +1,7 @@
 package presentation.uicomponents.songview;
 
 import business.abstracts.MusicPlayer;
+import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import presentation.scenes.ViewController;
 
@@ -27,23 +28,33 @@ public class SongViewController extends ViewController {
 	
 	@Override
 	public void init() {
-		initializeListeners();
+		initializeTrackListeners();
+		initializeCoverBindings();
 	}
 	
 	public Pane getRootView() {
 		return rootView;
 	}
 	
-	private void initializeListeners() {
+	private void initializeTrackListeners() {
 		
 		player.activeTrackProperty().addListener((observable, oldTrack, newTrack) -> {
-			
-			songInfo.setTitle(newTrack.getTitle());
-			songInfo.setArtist(newTrack.getArtist());
-			songInfo.setAlbum(newTrack.getAlbum());
-			
-			cover.setCover(newTrack.getCover());
+	
+			Platform.runLater(() -> {				
+				songInfo.setTitle(newTrack.getTitle());
+				songInfo.setArtist(newTrack.getArtist());
+				songInfo.setAlbum(newTrack.getAlbum());
+				cover.setCover(newTrack.getCover());
+			});
 		});
+	}
+	
+	private void initializeCoverBindings() {
+		
+		final double SCALING_FACTOR = 0.9;  // keep margin to window size and other elements
+		
+		cover.fitWidthProperty().bind(rootView.widthProperty().multiply(SCALING_FACTOR));
+		cover.fitHeightProperty().bind((rootView.heightProperty().subtract(songInfo.heightProperty()).multiply(SCALING_FACTOR)));
 	}
 
 }

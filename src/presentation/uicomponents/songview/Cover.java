@@ -24,6 +24,8 @@ public class Cover extends ImageView {
 			e.printStackTrace();
 		}
 		
+		this.setPreserveRatio(true);
+		
 	}
 	
 	public Cover(byte[] coverImageArray) {
@@ -41,8 +43,6 @@ public class Cover extends ImageView {
 		} catch (IOException e) {
 			setImage(defaultImage);
 		}
-	}
+	}	
 
-	
-	
 }

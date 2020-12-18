@@ -15,7 +15,7 @@ public class MathUtil {
 	 * @return (float) Decibel scaled value.
 	 */
 	public static float convertLinearToDB(float toConvert) {
-		return (float) (10 * Math.log10(toConvert));
+		return (float) (10 * Math.log(toConvert));
 	}
 
 	/**

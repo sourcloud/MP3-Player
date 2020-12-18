@@ -10,9 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import presentation.scenes.firstscene.PlayerScene;
-import presentation.scenes.secondscene.SecondScene;
-import presentation.scenes.thirdscene.ThirdScene;
+import presentation.scenes.playerscene.PlayerScene;
+import presentation.scenes.playlistscene.PlaylistScene;
 
 public class Main extends Application {
 	
@@ -31,8 +30,7 @@ public class Main extends Application {
 		scenes = new HashMap<>();
 
 		scenes.put(Scenes.FIRST_SCENE, new PlayerScene(player));
-		scenes.put(Scenes.SECOND_SCENE, new SecondScene());
-		scenes.put(Scenes.THIRD_SCENE, new ThirdScene());
+		scenes.put(Scenes.SECOND_SCENE, new PlaylistScene(player));
 		
 	}
 
@@ -42,7 +40,8 @@ public class Main extends Application {
 		try {
 			
 			this.primaryStage = primaryStage;
-			primaryStage.setMinHeight(750);
+			
+			primaryStage.setMinHeight(850);
 			primaryStage.setMinWidth(500);
 			
 			BorderPane root = new BorderPane();
@@ -67,9 +66,8 @@ public class Main extends Application {
 		
 		Scene scene = primaryStage.getScene();
 
-		if (scenes.containsKey(toScene)) {
+		if (scenes.containsKey(toScene))
 			scene.setRoot(scenes.get(toScene));
-		}
 	}
 
 	public static void main(String[] args) {
