@@ -1,8 +1,10 @@
-package presentation.uicomponents.songview;
+package presentation.views.songview;
 
 import business.abstracts.MusicPlayer;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
+import presentation.components.boxed_labels.SongInformation;
+import presentation.components.images.Cover;
 import presentation.scenes.ViewController;
 
 public class SongViewController extends ViewController {

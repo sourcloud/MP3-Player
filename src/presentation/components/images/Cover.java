@@ -1,4 +1,4 @@
-package presentation.uicomponents.songview;
+package presentation.components.images;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
@@ -9,16 +9,28 @@ import javafx.scene.image.ImageView;
 
 public class Cover extends ImageView {
 	
-	private final static String DEFAULT_PATH = "img/no-cover.jpg";
+	private static final String DEFAULT_PATH = "img/no-cover.jpg";
+	private static final double DEFAULT_HEIGHT = 500;
+	private static final double DEFAULT_WIDTH = 500;
 	
 	private Image defaultImage;
+	
+	private double standardHeight;
+	private double standardWidth;
 
 	public Cover() {	
+		this(DEFAULT_HEIGHT, DEFAULT_WIDTH);
+	}
+	
+	public Cover(double height, double width) {
 		
 		super();
 		
+		this.standardHeight = height;
+		this.standardWidth = width;
+		
 		try (FileInputStream fis = new FileInputStream(DEFAULT_PATH)) {
-			defaultImage = new Image(fis, 500, 500, true, true);
+			defaultImage = new Image(fis, standardWidth, standardHeight, true, true);
 			setImage(defaultImage);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -38,8 +50,7 @@ public class Cover extends ImageView {
 	public void setCover(byte[] coverImageArray) {
 				
 		try (ByteArrayInputStream bis = new ByteArrayInputStream(coverImageArray)) {
-			setImage(new Image(bis, 500, 500, true, true));
-			
+			setImage(new Image(bis, standardWidth, standardHeight, true, true));
 		} catch (IOException e) {
 			setImage(defaultImage);
 		}

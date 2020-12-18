@@ -1,4 +1,4 @@
-package presentation.uicomponents.controlview;
+package presentation.views.controlview;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import presentation.application.AppColor;
-import presentation.uicomponents.buttons.RoundButton;
+import presentation.components.buttons.RoundButton;
 
 public class ControlView extends VBox {
 	
@@ -103,7 +103,7 @@ public class ControlView extends VBox {
 	
 	private void initializeVolumeControls() {
 		
-		minVolume = new Label("0%");
+		minVolume = new Label(Symbol.QUIET.unicode());
 		minVolume.setTextFill(AppColor.ACCENT_1.color());
 		
 		volumeSlider = new Slider();
@@ -111,7 +111,7 @@ public class ControlView extends VBox {
 		volumeSlider.setMax(5);
 		volumeSlider.setValue(2);
 		
-		maxVolume = new Label("100%");
+		maxVolume = new Label(Symbol.LOUD.unicode());
 		maxVolume.setTextFill(AppColor.ACCENT_1.color());
 		
 	}

@@ -1,4 +1,4 @@
-package presentation.uicomponents.loadview;
+package presentation.views.loadview;
 
 import java.io.File;
 

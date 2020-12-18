@@ -3,9 +3,9 @@ package presentation.scenes.playerscene;
 import business.abstracts.MusicPlayer;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import presentation.uicomponents.controlview.ControlViewController;
-import presentation.uicomponents.loadview.LoadViewController;
-import presentation.uicomponents.songview.SongViewController;
+import presentation.views.controlview.ControlViewController;
+import presentation.views.loadview.LoadViewController;
+import presentation.views.songview.SongViewController;
 
 public class PlayerScene extends BorderPane {
 	

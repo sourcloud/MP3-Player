@@ -1,4 +1,4 @@
-package presentation.uicomponents.controlview;
+package presentation.views.controlview;
 
 public enum Symbol {
 
@@ -8,7 +8,9 @@ public enum Symbol {
 	PAUSE("\u25AE\u25AE"),
 	REPEAT("\u27F2"),
 	SHUFFLE("\u292E"),
-	SKIPBACK("\u25AE\u25C0");
+	SKIPBACK("\u25AE\u25C0"),
+	QUIET("0%"),
+	LOUD("100%");
 	
 	private String unicode;
 	

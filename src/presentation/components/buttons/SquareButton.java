@@ -1,4 +1,4 @@
-package presentation.uicomponents.buttons;
+package presentation.components.buttons;
 
 import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;

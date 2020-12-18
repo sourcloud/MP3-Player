@@ -1,4 +1,4 @@
-package presentation.uicomponents.songview;
+package presentation.components.boxed_labels;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

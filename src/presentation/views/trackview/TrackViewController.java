@@ -1,4 +1,4 @@
-package presentation.uicomponents.trackview;
+package presentation.views.trackview;
 
 import business.abstracts.MusicPlayer;
 import business.data.Track;

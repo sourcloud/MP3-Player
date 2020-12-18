@@ -1,8 +1,10 @@
-package presentation.uicomponents.songview;
+package presentation.views.songview;
 
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import presentation.components.boxed_labels.SongInformation;
+import presentation.components.images.Cover;
 
 public class SongView extends VBox {
 

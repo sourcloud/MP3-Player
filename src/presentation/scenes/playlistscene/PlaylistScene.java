@@ -3,7 +3,7 @@ package presentation.scenes.playlistscene;
 import business.abstracts.MusicPlayer;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import presentation.uicomponents.trackview.TrackViewController;
+import presentation.views.trackview.TrackViewController;
 
 public class PlaylistScene extends BorderPane {
 

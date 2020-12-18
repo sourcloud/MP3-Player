@@ -1,4 +1,4 @@
-package presentation.uicomponents.controlview;
+package presentation.views.controlview;
 
 import business.abstracts.MusicPlayer;
 import business.services.util.MathUtil;

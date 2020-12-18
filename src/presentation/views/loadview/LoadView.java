@@ -1,4 +1,4 @@
-package presentation.uicomponents.loadview;
+package presentation.views.loadview;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
