@@ -7,24 +7,41 @@ import presentation.scenes.ViewController;
 
 public class TrackViewController extends ViewController {
 
+	private MusicPlayer player;
 	private ObservableList<Track> tracks;
+	
+	private TrackView view;
 	
 	public TrackViewController(MusicPlayer player) {
 		
-		TrackView view = new TrackView();
+		this.player = player;
+		
+		this.view = new TrackView();
 		
 		this.tracks = view.tracks;
 		
+		init();
+		
+	}
+	
+	public TrackView getView() {
+		return view;
 	}
 	
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		initializeListeners();
 	}
 	
-	
-	
+	private void initializeListeners() {
+		
+		player.activePlaylistProperty().addListener((observable, oldPlaylist, newPlaylist) -> {
+			tracks.clear();
+			tracks.setAll(newPlaylist.getTracklist());
+			view.setItems(tracks);
+		});
+		
+	}
 	
 
 }

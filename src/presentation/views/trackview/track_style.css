@@ -1,1 +1,19 @@
-/* */
+
+.listitem, .info {
+	-fx-background-color: #16213e;
+}
+
+.label {
+	-fx-background-color: rgba(0,0,0,0);
+	-fx-padding: 5px;
+}
+
+.title {
+	-fx-font-size: 16pt;
+	-fx-text-fill: #faa307;
+}
+
+.artist, .album {
+	-fx-font-size: 12pt;
+	-fx-text-fill: #5fb9b0;
+}

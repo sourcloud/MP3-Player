@@ -3,7 +3,7 @@ package presentation.views.songview;
 import business.abstracts.MusicPlayer;
 import javafx.application.Platform;
 import javafx.scene.layout.Pane;
-import presentation.components.boxed_labels.SongInformation;
+import presentation.components.boxed_labels.SongInfo;
 import presentation.components.images.Cover;
 import presentation.scenes.ViewController;
 
@@ -11,7 +11,7 @@ public class SongViewController extends ViewController {
 	
 	private MusicPlayer player;
 	
-	private SongInformation songInfo;
+	private SongInfo songInfo;
 	private Cover cover;
 
 	public SongViewController(MusicPlayer player) {

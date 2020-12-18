@@ -22,6 +22,15 @@ public class Cover extends ImageView {
 		this(DEFAULT_HEIGHT, DEFAULT_WIDTH);
 	}
 	
+	public Cover(byte[] coverImageArray) {
+		this(coverImageArray, DEFAULT_HEIGHT, DEFAULT_WIDTH);
+	}
+	
+	public Cover(byte[] coverImageArray, double height, double width) {
+		this(height, width);
+		setCover(coverImageArray);
+	}
+	
 	public Cover(double height, double width) {
 		
 		super();
@@ -37,13 +46,6 @@ public class Cover extends ImageView {
 		}
 		
 		this.setPreserveRatio(true);
-		
-	}
-	
-	public Cover(byte[] coverImageArray) {
-		
-		this();
-		setCover(coverImageArray);
 		
 	}
 	

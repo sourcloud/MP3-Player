@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import business.abstracts.MusicPlayer;
+import business.data.Playlist;
+import business.data.util.M3U_IO;
 import business.services.MP3Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,11 +13,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import presentation.scenes.playerscene.PlayerScene;
-import presentation.scenes.playlistscene.PlaylistScene;
+import presentation.scenes.tracklistscene.TracklistScene;
 
 public class Main extends Application {
 	
-	public enum Scenes {FIRST_SCENE, SECOND_SCENE, THIRD_SCENE};
+	public enum Scenes {FIRST_SCENE, SECOND_SCENE};
 	
 	private Stage primaryStage;
 	private Map<Scenes, Pane> scenes;
@@ -30,7 +32,7 @@ public class Main extends Application {
 		scenes = new HashMap<>();
 
 		scenes.put(Scenes.FIRST_SCENE, new PlayerScene(player));
-		scenes.put(Scenes.SECOND_SCENE, new PlaylistScene(player));
+		scenes.put(Scenes.SECOND_SCENE, new TracklistScene(player));
 		
 	}
 
@@ -51,7 +53,10 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 
 			switchScene(Scenes.FIRST_SCENE);
+			
+			switchScene(Scenes.SECOND_SCENE);
 
+			
 			primaryStage.show();
 			
 		} catch(Exception e) {
