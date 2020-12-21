@@ -11,6 +11,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import presentation.application.App;
 import presentation.application.AppColor;
 import presentation.scenes.ViewController;
 
@@ -31,7 +32,7 @@ public class ControlViewController extends ViewController {
 	private Slider timeSlider;
 	private Slider volumeSlider;
 
-	public ControlViewController(MusicPlayer player) {
+	public ControlViewController(MusicPlayer player, App app) {
 		
 		this.player = player;
 		
@@ -142,24 +143,19 @@ public class ControlViewController extends ViewController {
 		
 		player.activeTrackProperty().addListener((observable, oldTrack, newTrack) -> {
 			
-			int timeInSeconds = MathUtil.convertMillisecondsToSeconds(newTrack.getLength());
-			int fullMinutes = MathUtil.fullMinuteSeconds(timeInSeconds);
-			int leftoverSeconds = MathUtil.leftoverSeconds(timeInSeconds);
+			int seconds = newTrack.getLength() / 1000;
 			
-			maxTimeLabel.setText("%d:%02d".formatted(fullMinutes, leftoverSeconds));
-			
+			maxTimeLabel.setText("%d:%02d".formatted(seconds / 60, seconds % 60));		
 			timeSlider.setMax(newTrack.getLength());
 		});
 		
 		
 		player.currentPlaytimeProperty().addListener((observable, oldValue, newValue) -> {
 	
-			int timeInSeconds = MathUtil.convertMillisecondsToSeconds(newValue.intValue());
-			int fullMinutes = MathUtil.fullMinuteSeconds(timeInSeconds);
-			int leftoverSeconds = MathUtil.leftoverSeconds(timeInSeconds);
+			int seconds = newValue.intValue() / 1000;
 			
 			Platform.runLater(() ->  {
-				currentTimeLabel.setText("%d:%02d".formatted(fullMinutes, leftoverSeconds));
+				currentTimeLabel.setText("%d:%02d".formatted(seconds / 60, seconds % 60));
 				timeSlider.setValue(newValue.intValue());
 			});
 			

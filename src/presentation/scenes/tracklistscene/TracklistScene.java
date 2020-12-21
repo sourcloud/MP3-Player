@@ -3,20 +3,21 @@ package presentation.scenes.tracklistscene;
 import business.abstracts.MusicPlayer;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import presentation.application.App;
 import presentation.views.loadview.LoadViewController;
 import presentation.views.trackview.TrackView;
 import presentation.views.trackview.TrackViewController;
 
 public class TracklistScene extends BorderPane {
 
-	public TracklistScene(MusicPlayer player) {
+	public TracklistScene(MusicPlayer player, App app) {
 		
 		this.getStylesheets().add(getClass().getResource("tracklist_style.css").toExternalForm());		
 		
-		Pane loadView = new LoadViewController(player).getRootView();
+		Pane loadView = new LoadViewController(player, app).getRootView();
 		this.setTop(loadView);
 		
-		TrackView tracklistView = new TrackViewController(player).getView();
+		TrackView tracklistView = new TrackViewController(player, app).getView();
 		this.setCenter(tracklistView);
 		
 	}

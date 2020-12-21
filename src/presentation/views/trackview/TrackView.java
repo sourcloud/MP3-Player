@@ -11,11 +11,10 @@ public class TrackView extends ListView<Track> {
 	
 	public TrackView() {
 		
-		this.getStylesheets().add(getClass().getResource("track_style.css").toExternalForm());
-		
 		tracks = FXCollections.observableArrayList();
 		
 		this.setCellFactory(e -> new TrackCell());
+		this.getStylesheets().add(getClass().getResource("track_style.css").toExternalForm());
 		
 	}
 	

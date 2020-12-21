@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import presentation.application.App;
+import presentation.application.App.Scenes;
 import presentation.scenes.ViewController;
 
 public class LoadViewController extends ViewController {
@@ -17,10 +19,12 @@ public class LoadViewController extends ViewController {
 	private MusicPlayer player;
 	private Button loadButton;
 	private Label nameLabel;
+	private App app;
 	
-	public LoadViewController(MusicPlayer player) {
+	public LoadViewController(MusicPlayer player, App app) {
 
 		this.player = player;
+		this.app = app;
 		
 		LoadView view = new LoadView();
 		
@@ -41,15 +45,21 @@ public class LoadViewController extends ViewController {
 	
 	private void initializeHandlers() {
 		
-		loadButton.addEventHandler(MouseEvent.MOUSE_CLICKED, 
-			event -> {
+		nameLabel.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+			app.switchScene();
+		});
+		
+		loadButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 				
-				File selected = chooseM3U();
-				
-				if (selected != null)
-					player.setPlaylist(new Playlist(selected));
-				
-			});
+			File selected = chooseM3U();
+			
+			if (selected != null) {
+				player.stop();
+				player.setPlaylist(new Playlist(selected));
+				app.switchScene(Scenes.PLAYLIST);
+			}
+			
+		});
 	}
 	
 	private void initializeListeners() {

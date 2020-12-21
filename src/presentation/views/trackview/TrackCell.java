@@ -8,6 +8,11 @@ import presentation.components.images.Cover;
 
 public class TrackCell extends ListCell<Track> {
 
+	public TrackCell() {
+		super();
+		setPrefWidth(0);
+	}
+	
 	@Override
 	protected void updateItem(Track track, boolean empty) {
 		

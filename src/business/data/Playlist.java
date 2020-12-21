@@ -44,6 +44,10 @@ public class Playlist implements Cycle<Track> {
 		return tracklist;
 	}
 	
+	public synchronized void setCurrentIndex(int index) {
+		this.currentIndex = index;
+	}
+	
 	public synchronized Track random() {
 		currentIndex = MathUtil.getRandomInRange(0, tracklist.size() - 1);
 		return tracklist.get(currentIndex);
