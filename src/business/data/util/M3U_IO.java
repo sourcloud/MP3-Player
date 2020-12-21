@@ -12,32 +12,7 @@ import business.data.Track;
 public class M3U_IO {
 	
 	public static List<Track> importPlaylist(String path) {
-		
-		List<Track> allTracks = new ArrayList<>();
-		
-		
-		new Thread(() -> {
-			
-			try (BufferedReader reader 
-					= new BufferedReader(new FileReader(path))) {
-				
-				String pathToMP3;
-				
-				while ((pathToMP3 = reader.readLine()) != null) {
-					
-					if (!pathToMP3.startsWith("#")) {				// ignore Metdadata			
-						Track nextTrack = new Track(pathToMP3);
-						allTracks.add(nextTrack);
-					}
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		}).start();
-		
-		return allTracks;
-		
+		return importPlaylist(new File(path));
 	}
 	
 	public static List<Track> importPlaylist(File file) {

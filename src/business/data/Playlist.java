@@ -19,21 +19,16 @@ public class Playlist implements Cycle<Track> {
 	}
 	
 	public Playlist(String pathToM3U) {
-		String[] nameParts = pathToM3U.split("/");
-		String lastPart = nameParts[nameParts.length-1];
-		name = lastPart;
-		tracklist = M3U_IO.importPlaylist(pathToM3U);
+		this(new File(pathToM3U));
 	}
 	
 	public Playlist(File file) {
-		String[] nameParts = file.getAbsolutePath().split("/");
-		String lastPart = nameParts[nameParts.length-1];
-		name = lastPart;
+		if (file != null) {			
+			String[] nameParts = file.getAbsolutePath().split("/");
+			String lastPart = nameParts[nameParts.length-1];
+			name = lastPart;
+		}
 		tracklist = M3U_IO.importPlaylist(file);
-	}
-	
-	public static Playlist importPlaylist(String pathToM3U) {
-		return new Playlist(pathToM3U);
 	}
 	
 	public String getName() {

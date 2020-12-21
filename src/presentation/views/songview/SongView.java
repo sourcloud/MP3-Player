@@ -25,8 +25,5 @@ public class SongView extends VBox {
 		this.getStylesheets().add(getClass().getResource("song_style.css").toExternalForm());
 
 	}
-	
-	public ImageView getCover() {
-		return cover;
-	}
+
 }
