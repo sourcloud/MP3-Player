@@ -3,7 +3,6 @@ package presentation.views.controlview;
 import business.abstracts.MusicPlayer;
 import business.services.util.MathUtil;
 import business.services.util.PlayingState;
-import business.services.util.ShuffleState;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -82,8 +81,10 @@ public class ControlViewController extends ViewController {
 		
 		stopButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> player.stop() );
 		skipButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> player.skip() );
-		repeatButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> player.toggleRepeat() );		
+		
+		repeatButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> player.toggleRepeat() );
 		shuffleButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> player.toggleShuffle() );
+		
 		skipBackButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> player.skipBack() );
 	}
 	
@@ -109,33 +110,37 @@ public class ControlViewController extends ViewController {
 		});
 		
 		
-		player.shuffleStateProperty().addListener((observable, oldState, newState) -> {
-			
-			Color newColor = newState.equals(ShuffleState.ACTIVE) 
-								? AppColor.ACCENT_1.color() 
-								: AppColor.INACTIVE.color();
-								
-			shuffleButton.setTextFill(newColor);
-		});
-		
-		
-		player.repeatStateProperty().addListener((observable, oldState, newState) -> {
+		player.skipStateProperty().addListener((observable, oldState, newState) -> {
 				
-			Color newColor;
+			Color repeatColor, shuffleColor;
 			
 			switch(newState) {
+			
+				case SHUFFLE:
+					repeatColor = AppColor.INACTIVE.color();
+					shuffleColor = AppColor.ACCENT_1.color();
+					break;
+					
 				case ALL:
-					newColor = AppColor.ACCENT_1.color();
+					repeatColor = AppColor.ACCENT_1.color();
+					shuffleColor = AppColor.INACTIVE.color();
 					break;
+					
 				case SINGLE:
-					newColor = AppColor.ACCENT_2.color();
+					repeatColor = AppColor.ACCENT_2.color();
+					shuffleColor = AppColor.INACTIVE.color();
 					break;
-				case NONE: // FALLTHROUGH
+					
+				case DEFAULT: // FALLTHROUGH
+					
 				default:
-					newColor = AppColor.INACTIVE.color();
+					repeatColor = AppColor.INACTIVE.color();
+					shuffleColor = AppColor.INACTIVE.color();
 					break;
 			}
-			repeatButton.setTextFill(newColor);
+			
+			repeatButton.setTextFill(repeatColor);
+			shuffleButton.setTextFill(shuffleColor);
 		});
 	}
 	

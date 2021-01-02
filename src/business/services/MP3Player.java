@@ -4,6 +4,7 @@ import business.abstracts.MusicPlayer;
 import business.data.Playlist;
 import business.data.Track;
 import business.services.util.MathUtil;
+import business.services.util.SkipState;
 
 public class MP3Player extends MusicPlayer {
 	
@@ -139,47 +140,58 @@ public class MP3Player extends MusicPlayer {
 
 	@Override
 	public void skip() {
-		
-		if (tracklist != null) {
+	
+		if (tracklist != null) 
+			skipStateProperty.get().skip(this);
 			
-			if (repeatStateProperty.get().repeatOne())
-				play(tracklist.current());
-			
-			else if (shuffleStateProperty.get().active())
-				play(tracklist.random());
-			
-			else if (repeatStateProperty.get().repeatAll() || tracklist.hasNext())
-				play(tracklist.next());
-			
-		}
 	}
 
 	@Override
 	public void skipBack() {
 		
-		if (tracklist != null) {
-			
-			if (repeatStateProperty.get().repeatOne())
-				play(tracklist.current());
-			
-			else if (repeatStateProperty.get().repeatAll() || tracklist.hasPrev())
-				play(tracklist.prev());
-			
-		}
+		if (tracklist != null)
+			skipStateProperty.get().skipBack(this);
+		
 	}
-
-	@Override
-	public void toggleShuffle() {
-		shuffleStateProperty.set(shuffleStateProperty.get().switchState());
-	}
-
+	
 	@Override
 	public void toggleRepeat() {
-		repeatStateProperty.set(repeatStateProperty.get().nextState());
+		
+		SkipState current, next;
+		
+		current = skipStateProperty.get();
+		
+		switch(current) {
+		
+			case SINGLE:
+				next = SkipState.DEFAULT;
+				break;
+				
+			case ALL:
+				next = SkipState.SINGLE;
+				break;
+				
+			case DEFAULT: // FALLTHROUGH
+				
+			case SHUFFLE: // FALLTHROUGH
+				
+			default:
+				next = SkipState.ALL;
+				break;
+		}
+		
+		skipStateProperty.set(next);
+		
 	}
+	
+	@Override
+	public void toggleShuffle() {
+		skipStateProperty.set(SkipState.SHUFFLE);
+	}
+
 	
 	private void switchPlayingState() {
 		playingStateProperty.set(playingStateProperty.get().switchState());
 	}
-
+	
 }
